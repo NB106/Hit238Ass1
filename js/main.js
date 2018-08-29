@@ -2,6 +2,10 @@ var removeimg='<img src=media/remove.png alt="button">';
 var completeimg='<img src=media/complete.png alt="button">';
 var detailsimg='<img src=media/details.png alt="button">';
 
+var localdata={
+  todolist:[], completed:[]
+};
+
 //when user click on the plus button
 document.getElementById('addtask').addEventListener('click', function() {
   var value = document.getElementById('task').value;
@@ -22,11 +26,12 @@ function completeTask(){
   var task = this.parentNode.parentNode;
   var parent = task.parentNode;
   var id = parent.id;
-  var target;
 
-  if id(==='todolist'){
-    target = document.getElementById('todolist')
-  }
+  var target=(id==='todolist')? document.getElementById('completed'):document.getElementById('todolist');
+
+  parent.removeChild(task);
+  target.insertBefore(task,target.childNodes[0]);
+
 }
 
 function addTaskTodo(text){
@@ -54,7 +59,7 @@ function addTaskTodo(text){
   complete.classList.add('completeTask');
   complete.innerHTML=completeimg;
 
-  remove.addEventListener('click', completeTask);
+  complete.addEventListener('click', completeTask);
 
   var details = document.createElement('button');
   details.classList.add('details');

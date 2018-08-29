@@ -139,3 +139,28 @@ ul.todolist li .buttons button{
   height: 22px;
   position:relative;
 }
+
+ul.todolist#completed:not(:empty){
+  position: relative;
+  padding:60px 0 0 0;
+}
+
+ul.todolist#completed:not(:empty):before {
+  content: '';
+  opacity: 0.5;
+  width: 200px;
+  height: 3px;
+  background: #C5C7C8;
+  border-radius: 2px;
+
+  position: absolute;
+  top: 30px;
+  left:45%;
+
+  margin: 0 0 0 -75px;
+}
+
+ul.todolist#todolist:empty:after {
+  content: 'You have nothing to-do!';
+  margin: 15px 0 0 0;
+}
