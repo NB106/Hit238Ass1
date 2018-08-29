@@ -2,9 +2,13 @@ var removeimg='<img src=media/remove.png alt="button">';
 var completeimg='<img src=media/complete.png alt="button">';
 var detailsimg='<img src=media/details.png alt="button">';
 
-var localdata={
+var localdata= (localStorage.getItem('TodoList'))?JSON.parse(localStorage.getItem('TodoList')):{
   todolist:[], completed:[]
 };
+
+console.log(localdata);
+
+//console.log( JSON.parse(localStorage.getItem('TodoList')));
 
 //when user click on the plus button
 document.getElementById('addtask').addEventListener('click', function() {
@@ -12,13 +16,34 @@ document.getElementById('addtask').addEventListener('click', function() {
   if (value){
     addTaskTodo(value);
     document.getElementById('task').value='';
+
+    localdata.todolist.push(value);
+    localdataUpdated();
   }
 });
+
+
+function localdataUpdated(){
+
+  localStorage.setItem('TodoList', JSON.stringify(localdata));
+
+}
 
 function removeTask(){
   var task = this.parentNode.parentNode;
   var parent = task.parentNode;
+  var id=parent.id;
+  var value = task.innerText;
+
+  if(id==='todolist')
+  {
+    localdata.todolist.splice(localdata.todolist.indexOf(value),1);
+  } else{
+    localdata.completed.splice(localdata.completed.indexOf(value),1);
+  }
+
   parent.removeChild(task);
+  localdataUpdated();
 }
 
 
@@ -26,11 +51,23 @@ function completeTask(){
   var task = this.parentNode.parentNode;
   var parent = task.parentNode;
   var id = parent.id;
+  var value = task.innerText;
+
+  if(id==='todolist')
+  {
+    localdata.todolist.splice(localdata.todolist.indexOf(value),1);
+    localdata.completed.push(value);
+  } else{
+    localdata.completed.splice(localdata.completed.indexOf(value),1);
+    localdata.todolist.push(value);
+  }
 
   var target=(id==='todolist')? document.getElementById('completed'):document.getElementById('todolist');
 
   parent.removeChild(task);
   target.insertBefore(task,target.childNodes[0]);
+
+  localdataUpdated();
 
 }
 
