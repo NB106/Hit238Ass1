@@ -5,8 +5,9 @@ var detailsimg='<img src=media/details.png alt="button">';
 var localdata= (localStorage.getItem('TodoList'))?JSON.parse(localStorage.getItem('TodoList')):{
   todolist:[], completed:[]
 };
+renderTask();
 
-console.log(localdata);
+//console.log(localdata);
 
 //console.log( JSON.parse(localStorage.getItem('TodoList')));
 
@@ -21,6 +22,20 @@ document.getElementById('addtask').addEventListener('click', function() {
     localdataUpdated();
   }
 });
+
+function renderTask(){
+  if(!localdata.todolist.length && !localdata.completed.length) return;
+
+  for(var i=0;i<localdata.todolist.length;i++){
+    var value=localdata.todolist[i];
+    addTaskTodo(value);
+  }
+
+  for(var j=0;j<localdata.completed.length;j++){
+    var value=localdata.completed[j];
+    addTaskTodo(value,true);
+  }
+}
 
 
 function localdataUpdated(){
@@ -71,9 +86,9 @@ function completeTask(){
 
 }
 
-function addTaskTodo(text){
+function addTaskTodo(text, completed){
 
-  var list = document.getElementById('todolist');
+  var list = (completed)?document.getElementById('completed'):document.getElementById('todolist');
 
   var task=document.createElement('li');
   task.innerText=text;
