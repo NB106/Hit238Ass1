@@ -8,7 +8,8 @@
 
 body {
   background: #edf0f1;
-  padding: 80px;
+  padding-left: 30px;
+  padding-top: 80px;
 }
 
 body, input {
@@ -17,30 +18,41 @@ body, input {
 
 header {
   width: 100%;
-  height: 80px;
+  height: 100px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 5px;
   background: #27A1FE;
   box-shadow: 0px 2px 4px #C5C7C8;
   padding: 15px;
+  text-align: center;
 }
 
-header input {
-  width: 100%;
-  height: 100%;
+
+.addtask {
+  width: 354px;
+  height: 54px;
+  position: relative;
+  border: 2px solid #27A1FE;
+  border-radius: 5px;
+  radius: 5px;
+  top: 35px;
+  float:none;
+  box-shadow: 0px 2px 4px #C5C7C8;
+
+}
+
+.addtask input {
+  width: 300px;
+  height: 50px;
   float: left;
   color: #fff;
+  position: relative;
   background: #73BEF7;
   font-size: 15px;
   font-weight: 400;
   text-indent: 15px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
   border: 0px;
   box-shadow: none;
   outline: none;
@@ -50,17 +62,16 @@ header input {
   appearance: none;
 }
 
-header input::-webkit-input-placeholder {
+.addtask input::-webkit-input-placeholder {
   color: #fff;
 }
 
-header button {
+.addtask button {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 15px;
-  right: 15px;
   background: #fff;
+  right: 0px;
   border: 0px;
   box-shadow: none;
   outline: none;
@@ -69,7 +80,7 @@ header button {
   border-bottom-right-radius: 5px;
 }
 
-header button img {
+.addtask button img {
   width: 16px;
   height: 16px;
   position: absolute;
@@ -78,15 +89,18 @@ header button img {
   margin: -8px 0 0 -8px;
 }
 
+
 .container{
-  width: 100%;
+  width: 340px;
   float: left;
-  padding: 15px;
+  padding-top: 45px;
+  padding-left: 10px;
 }
 
 ul.todolist{
   width: 100%;
   float: left;
+  top: 10px;
 }
 
 ul.todolist li{
@@ -148,19 +162,18 @@ ul.todolist#completed:not(:empty){
 ul.todolist#completed:not(:empty):before {
   content: '';
   opacity: 0.5;
-  width: 200px;
+  width: 300px;
   height: 3px;
   background: #C5C7C8;
   border-radius: 2px;
 
   position: absolute;
   top: 30px;
-  left:45%;
+  left:27%;
 
   margin: 0 0 0 -75px;
 }
 
 ul.todolist#todolist:empty:after {
   content: 'You have nothing to-do!';
-  margin: 15px 0 0 0;
 }
